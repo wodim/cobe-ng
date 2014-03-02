@@ -273,3 +273,34 @@ class DelStemmerCommand:
         b = Brain(args.brain)
 
         b.del_stemmer()
+
+class OneLinerCommand:
+    @classmethod
+    def add_subparser(cls, parser):
+        subparser = parser.add_parser("oneliner", help="Dump one line and exit immediately")
+        subparser.add_argument("-t", "--text", help="Text for which we will generate a reply")
+
+        subparser.set_defaults(run=cls.run)
+
+    @staticmethod
+    def run(args):
+        b = Brain(args.brain)
+        if args.text is not None:
+            reply = b.reply(args.text)
+        else:
+            reply = b.reply(u'')
+
+        print reply
+
+class LearnSingleCommand:
+    @classmethod
+    def add_subparser(cls, parser):
+        subparser = parser.add_parser("learn-single", help="Learn a single line")
+        subparser.add_argument(dest="text", help="Sentence to learn")
+
+        subparser.set_defaults(run=cls.run)
+
+    @staticmethod
+    def run(args):
+        b = Brain(args.brain)
+        b.learn(args.text)

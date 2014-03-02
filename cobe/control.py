@@ -20,6 +20,8 @@ commands.LearnCommand.add_subparser(subparsers)
 commands.LearnIrcLogCommand.add_subparser(subparsers)
 commands.SetStemmerCommand.add_subparser(subparsers)
 commands.DelStemmerCommand.add_subparser(subparsers)
+commands.OneLinerCommand.add_subparser(subparsers)
+commands.LearnSingleCommand.add_subparser(subparsers)
 
 
 def main():
@@ -33,7 +35,8 @@ def main():
     if args.debug:
         logging.root.setLevel(logging.DEBUG)
     else:
-        logging.root.setLevel(logging.INFO)
+        pass
+        #logging.root.setLevel(logging.INFO)
 
     if args.instatrace:
         instatrace.init_trace(args.instatrace)
